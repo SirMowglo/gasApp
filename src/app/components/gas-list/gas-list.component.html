@@ -1,8 +1,8 @@
 <div class="container">
     <div class="card" *ngFor="let gas of gasList">
-        <h3>
+        <h2>
           {{ this.gas["Rótulo"] }}
-        </h3>
+        </h2>
         <div>
           <p>
             <b>Localidad: </b>{{ this.stringToReadable(this.gas["Localidad"]) }},
@@ -10,8 +10,9 @@
           </p>
           <p><b>Dirección: </b>{{ this.stringToReadable(this.gas["Dirección"]) }}</p>
         </div>
+        <hr>
         <div>
-          <b>Precio Gasolinas:</b>
+          <h3>Precio Combustible:</h3>
           <p><b>Precio Gasoleo A: </b>{{ this.gas["Precio Gasoleo A"]}}</p>
           <p><b>Precio Gasoleo B: </b>{{ this.gas["Precio Gasoleo B"]}}</p>
           <p><b>Precio Gasolina 95 E5: </b>{{ this.gas["Precio Gasolina 95 E5"]}}</p>
