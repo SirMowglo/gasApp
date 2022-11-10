@@ -10,6 +10,6 @@ export class GasService {
   constructor(private http:HttpClient) { }
 
   getGasStations():Observable <GasResponse>{
-    return this.http.get<GasResponse>(`https://github.com/SirMowglo/gasApp/blob/main/gasResponse.json`);
+    return this.http.get<GasResponse>(`https://raw.githubusercontent.com/SirMowglo/gasApp/main/gasResponse.json`);
   }
 }
