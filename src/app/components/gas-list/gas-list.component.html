@@ -1,6 +1,20 @@
-
-<div style="background-color: aliceblue;" *ngFor="let gas of gasList">
-    <h1>
-        Localidad: {{this.gas['Localidad']}}
-    </h1>
+<div class="container">
+    <div class="card" *ngFor="let gas of gasList">
+        <h3>
+          {{ this.gas["Rótulo"] }}
+        </h3>
+        <div>
+          <p>
+            <b>Localidad: </b>{{ this.stringToReadable(this.gas["Localidad"]) }},
+            {{ this.stringToReadable(this.gas["Provincia"]) }}
+          </p>
+          <p><b>Dirección: </b>{{ this.stringToReadable(this.gas["Dirección"]) }}</p>
+        </div>
+        <div>
+          <b>Precio Gasolinas:</b>
+          <p><b>Precio Gasoleo A: </b>{{ this.gas["Precio Gasoleo A"]}}</p>
+          <p><b>Precio Gasoleo B: </b>{{ this.gas["Precio Gasoleo B"]}}</p>
+          <p><b>Precio Gasolina 95 E5: </b>{{ this.gas["Precio Gasolina 95 E5"]}}</p>
+        </div>
+      </div>
 </div>

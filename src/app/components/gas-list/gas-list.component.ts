@@ -21,4 +21,8 @@ export class GasListComponent implements OnInit {
       this.gasList = resp.ListaEESSPrecio;
     });
   }
+  stringToReadable(str: string){
+    let readable = str.charAt(0) + str.substring(1).toLowerCase();
+    return readable;
+  }
 }
