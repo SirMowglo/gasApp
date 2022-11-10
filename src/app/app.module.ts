@@ -5,10 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GasListComponent } from './components/gas-list/gas-list.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ViewComponent } from './components/view/view.component';
+import { MaterialImportsModule } from './modules/material-imports/material-imports.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, GasListComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, GasListComponent, SidebarComponent, ViewComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MaterialImportsModule, BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

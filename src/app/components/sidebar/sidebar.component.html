@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="header">Buscador</div>
+  <div class="func">
+    <h2>Tipo combustible</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Elige combustible</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{ food.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
