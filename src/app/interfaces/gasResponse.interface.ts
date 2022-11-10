@@ -6,9 +6,6 @@
 //     Nota:              string;
 //     ResultadoConsulta: string;
 // }
-
-declare module namespace {
-
     export interface ListaEESSPrecio {
         'C.P.': string;
         'Dirección': string;
@@ -44,11 +41,9 @@ declare module namespace {
         'IDCCAA': string;
     }
 
-    export interface RootObject {
+    export interface GasResponse {
         Fecha: string;
         ListaEESSPrecio: ListaEESSPrecio[];
         Nota: string;
         ResultadoConsulta: string;
     }
-
-}
