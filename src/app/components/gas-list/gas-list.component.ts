@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { GasResponse, ListaEESSPrecio } from 'src/app/interfaces/gasResponse.interface';
 import { GasService } from 'src/app/services/gas.service';
 
@@ -8,7 +8,13 @@ import { GasService } from 'src/app/services/gas.service';
   styleUrls: ['./gas-list.component.css']
 })
 export class GasListComponent implements OnInit {
-  gasList: ListaEESSPrecio[]=[]
+  //Vars from sidebar
+  @Input() selectedComb: string= '';
+  @Input() valuemin: number=1;
+  @Input() valuemax: number=3;
+
+  gasList: ListaEESSPrecio[]=[];
+  filteredGasList: ListaEESSPrecio[]=[];
 
   constructor(private gasService: GasService) { }
 

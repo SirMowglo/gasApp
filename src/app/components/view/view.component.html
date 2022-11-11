@@ -1,4 +1,12 @@
 <div class="container">
-  <app-sidebar></app-sidebar>
-  <app-gas-list></app-gas-list>
+  <app-sidebar
+    (emitSComb)="addComb($event)"
+    (emitMinValue)="addMinValue($event)"
+    (emitMaxValue)="addMaxValue($event)"
+  ></app-sidebar>
+  <app-gas-list
+    [selectedComb]="selectedComb"
+    [valuemin]="valuemin"
+    [valuemax]="valuemax"
+  ></app-gas-list>
 </div>

@@ -1,14 +1,42 @@
 <div class="container">
   <div class="header">Buscador</div>
   <div class="func">
-    <h2>Tipo combustible</h2>
+    <h2>Tipo combustible: {{this.selectedComb}}</h2>
     <mat-form-field appearance="fill">
       <mat-label>Elige combustible</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let food of foods" [value]="food.value">
-          {{ food.viewValue }}
+      <mat-select [(ngModel)]="this.selectedComb"(ngModelChange)="addSelectedComb(this.selectedComb)">
+        <mat-option *ngFor="let comb of combustibles"  [value]="comb.value">
+          {{ comb.viewValue }}
         </mat-option>
       </mat-select>
     </mat-form-field>
+  </div>
+  <div class="func">
+    <h2>Precio mínimo: {{this.valuemin}}€</h2>
+    <mat-slider
+      thumbLabel
+      [displayWith]="formatLabel"
+      tickInterval="0.01"
+      step="0.01"
+      min="1"
+      max="3"
+      [(ngModel)]="valuemin"
+      (ngModelChange)="addMinValue(this.valuemin)"
+      aria-label="units"
+    ></mat-slider>
+  </div>
+  <div class="func">
+    <h2>Precio máximo: {{this.valuemax}}€</h2>
+    <mat-slider
+      thumbLabel
+      [displayWith]="formatLabel"
+      tickInterval="0.01"
+      step="0.01"
+      min="1"
+      max="3"
+      [(ngModel)]="valuemax"
+      (ngModelChange)="addMaxValue(this.valuemax)"
+      aria-label="units"
+    ></mat-slider>
   </div>
 </div>
