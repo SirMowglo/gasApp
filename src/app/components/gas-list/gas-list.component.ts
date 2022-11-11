@@ -1,34 +1,68 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GasResponse, ListaEESSPrecio } from 'src/app/interfaces/gasResponse.interface';
+import {
+  GasResponse,
+  ListaEESSPrecio,
+} from 'src/app/interfaces/gasResponse.interface';
 import { GasService } from 'src/app/services/gas.service';
 
 @Component({
   selector: 'app-gas-list',
   templateUrl: './gas-list.component.html',
-  styleUrls: ['./gas-list.component.css']
+  styleUrls: ['./gas-list.component.css'],
 })
 export class GasListComponent implements OnInit {
   //Vars from sidebar
-  @Input() selectedComb: string= '';
-  @Input() valuemin: number=1;
-  @Input() valuemax: number=3;
+  @Input() selectedComb: string = '';
+  @Input() valuemin: number = 1;
+  @Input() valuemax: number = 3;
 
-  gasList: ListaEESSPrecio[]=[];
-  filteredGasList: ListaEESSPrecio[]=[];
+  gasList: ListaEESSPrecio[] = [];
+  filteredGasList: ListaEESSPrecio[] = [];
 
-  constructor(private gasService: GasService) { }
+  constructor(private gasService: GasService) {}
 
   ngOnInit(): void {
     this.getGasList();
   }
 
-  getGasList(){
-    this.gasService.getGasStations().subscribe(resp=>{
+  getGasList() {
+    this.gasService.getGasStations().subscribe((resp) => {
       this.gasList = resp.ListaEESSPrecio;
+      this.filteredGasList = this.gasList;
     });
   }
-  stringToReadable(str: string){
+  stringToReadable(str: string) {
     let readable = str.charAt(0) + str.substring(1).toLowerCase();
     return readable;
+  }
+  filterListByPrice(comb: string) {
+    if (comb === 'Gasoleo A') {
+      this.filteredGasList = this.filteredGasList.filter(
+        (gas) =>
+          Number(gas['Precio Gasoleo A' as keyof ListaEESSPrecio]) >=
+            this.valuemin &&
+          Number(gas['Precio Gasoleo A' as keyof ListaEESSPrecio]) <=
+            this.valuemax
+      );
+    }
+
+    if (comb === 'Gasoleo B') {
+      this.filteredGasList = this.filteredGasList.filter(
+        (gas) =>
+          Number(gas['Precio Gasoleo B' as keyof ListaEESSPrecio]) >=
+            this.valuemin &&
+          Number(gas['Precio Gasoleo B' as keyof ListaEESSPrecio]) <=
+            this.valuemax
+      );
+    }
+    if (comb === 'Gasolina 95 E5') {
+      this.filteredGasList = this.filteredGasList.filter(
+        (gas) =>
+          Number(gas['Precio Gasolina 95 E5' as keyof ListaEESSPrecio]) >=
+            this.valuemin &&
+          Number(gas['Precio Gasolina 95 E5' as keyof ListaEESSPrecio]) <=
+            this.valuemax
+      );
+    }
   }
 }

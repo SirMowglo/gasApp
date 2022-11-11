@@ -1,6 +1,5 @@
 <div class="container">
-  Min: {{this.valuemin}} Max: {{this.valuemax}} SC: {{this.selectedComb}}
-    <div class="card" *ngFor="let gas of gasList">
+    <div class="card" *ngFor="let gas of filteredGasList">
         <h2>
           {{ this.gas["Rótulo"] }}
         </h2>
