@@ -25,6 +25,10 @@ export class GasListComponent implements OnInit {
     this.getGasList();
   }
 
+  ngOnChanges() {
+    this.filterListByPrice(this.selectedComb);
+  }
+
   getGasList() {
     this.gasService.getGasStations().subscribe((resp) => {
       this.gasList = resp.ListaEESSPrecio;
@@ -35,33 +39,28 @@ export class GasListComponent implements OnInit {
     let readable = str.charAt(0) + str.substring(1).toLowerCase();
     return readable;
   }
-  filterListByPrice(comb: string) {
-    if (comb === 'Gasoleo A') {
-      this.filteredGasList = this.filteredGasList.filter(
-        (gas) =>
-          Number(gas['Precio Gasoleo A' as keyof ListaEESSPrecio]) >=
-            this.valuemin &&
-          Number(gas['Precio Gasoleo A' as keyof ListaEESSPrecio]) <=
-            this.valuemax
-      );
-    }
 
-    if (comb === 'Gasoleo B') {
-      this.filteredGasList = this.filteredGasList.filter(
+  
+  filterListByPrice(comb: string) {
+    if (comb == 'Gasoleo A') {
+      this.filteredGasList = this.gasList.filter(
         (gas) =>
-          Number(gas['Precio Gasoleo B' as keyof ListaEESSPrecio]) >=
-            this.valuemin &&
-          Number(gas['Precio Gasoleo B' as keyof ListaEESSPrecio]) <=
-            this.valuemax
+          parseFloat(gas['Precio Gasoleo A'].replace(',', '.')) >= this.valuemin &&
+          parseFloat(gas['Precio Gasoleo A'].replace(',', '.')) <= this.valuemax
       );
     }
-    if (comb === 'Gasolina 95 E5') {
-      this.filteredGasList = this.filteredGasList.filter(
+    if (comb == 'Gasoleo B') {
+      this.filteredGasList = this.gasList.filter(
         (gas) =>
-          Number(gas['Precio Gasolina 95 E5' as keyof ListaEESSPrecio]) >=
-            this.valuemin &&
-          Number(gas['Precio Gasolina 95 E5' as keyof ListaEESSPrecio]) <=
-            this.valuemax
+          parseFloat(gas['Precio Gasoleo B'].replace(',', '.')) >= this.valuemin &&
+          parseFloat(gas['Precio Gasoleo B'].replace(',', '.')) <= this.valuemax
+      );
+    }
+    if (comb == 'Gasolina 95 E5') {
+      this.filteredGasList = this.gasList.filter(
+        (gas) =>
+          parseFloat(gas['Precio Gasolina 95 E5'].replace(',', '.')) >= this.valuemin &&
+          parseFloat(gas['Precio Gasolina 95 E5'].replace(',', '.')) <= this.valuemax
       );
     }
   }

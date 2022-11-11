@@ -28,6 +28,8 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  
+
   formatLabel(value: number) {
     return value + '€';
   }
