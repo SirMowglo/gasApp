@@ -11,32 +11,38 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="func">
-    <h2>Precio mínimo: {{this.valuemin}}€</h2>
-    <mat-slider
-      thumbLabel
-      [displayWith]="formatLabel"
-      tickInterval="0.01"
-      step="0.01"
-      min="1"
-      max="3"
-      [(ngModel)]="valuemin"
-      (ngModelChange)="addMinValue(this.valuemin)"
-      aria-label="units"
-    ></mat-slider>
-  </div>
-  <div class="func">
-    <h2>Precio máximo: {{this.valuemax}}€</h2>
-    <mat-slider
-      thumbLabel
-      [displayWith]="formatLabel"
-      tickInterval="0.01"
-      step="0.01"
-      min="1"
-      max="3"
-      [(ngModel)]="valuemax"
-      (ngModelChange)="addMaxValue(this.valuemax)"
-      aria-label="units"
-    ></mat-slider>
+  <div *ngIf=" selectedComb != '' ">
+    <div class="func">
+      <h2>Precio mínimo: {{this.valuemin}}€</h2>
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="0.01"
+        step="0.01"
+        min="1"
+        max="3"
+        [(ngModel)]="valuemin"
+        (ngModelChange)="addMinValue(this.valuemin)"
+        aria-label="units"
+      ></mat-slider>
+    </div>
+    <div class="func">
+      <h2>Precio máximo: {{this.valuemax}}€</h2>
+      <mat-slider
+        thumbLabel
+        [displayWith]="formatLabel"
+        tickInterval="0.01"
+        step="0.01"
+        min="1"
+        max="3"
+        [(ngModel)]="valuemax"
+        (ngModelChange)="addMaxValue(this.valuemax)"
+        aria-label="units"
+      ></mat-slider>
+    </div>
+    <div class="func">
+      <h2>Provincia:</h2>
+      
+    </div>
   </div>
 </div>
