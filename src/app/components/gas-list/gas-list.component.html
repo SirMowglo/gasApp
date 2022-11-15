@@ -5,10 +5,10 @@
         </h2>
         <div>
           <p>
-            <b>Localidad: </b>{{ this.stringToReadable(this.gas["Localidad"]) }},
-            {{ this.stringToReadable(this.gas["Provincia"]) }}
+            <b>Localidad: </b>{{ this.formatString(this.gas["Localidad"]) }},
+            {{ this.formatString(this.gas["Provincia"]) }}
           </p>
-          <p><b>Dirección: </b>{{ this.stringToReadable(this.gas["Dirección"]) }}</p>
+          <p><b>Dirección: </b>{{ this.formatString(this.gas["Dirección"]) }}</p>
         </div>
         <hr>
         <div>

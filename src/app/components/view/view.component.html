@@ -3,10 +3,14 @@
     (emitSComb)="addComb($event)"
     (emitMinValue)="addMinValue($event)"
     (emitMaxValue)="addMaxValue($event)"
+    (emitMunSelected)="addMunSelected($event)"
+    (emitProvSelected)="addProvSelected($event)"
   ></app-sidebar>
   <app-gas-list
     [selectedComb]="selectedComb"
     [valuemin]="valuemin"
     [valuemax]="valuemax"
+    [munSelected]="munSelected"
+    [provSelected]="provSelected"
   ></app-gas-list>
 </div>

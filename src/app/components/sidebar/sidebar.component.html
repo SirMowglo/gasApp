@@ -1,19 +1,22 @@
 <div class="container">
   <div class="header">Buscador</div>
   <div class="func">
-    <h2>Tipo combustible: {{this.selectedComb}}</h2>
+    <h2>Tipo combustible: {{ this.selectedComb }}</h2>
     <mat-form-field appearance="fill">
       <mat-label>Elige combustible</mat-label>
-      <mat-select [(ngModel)]="this.selectedComb"(ngModelChange)="addSelectedComb(this.selectedComb)">
-        <mat-option *ngFor="let comb of combustibles"  [value]="comb.value">
+      <mat-select
+        [(ngModel)]="this.selectedComb"
+        (ngModelChange)="addSelectedComb(this.selectedComb)"
+      >
+        <mat-option *ngFor="let comb of combustibles" [value]="comb.value">
           {{ comb.viewValue }}
         </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-  <div *ngIf=" selectedComb != '' ">
+  <div *ngIf="selectedComb != ''">
     <div class="func">
-      <h2>Precio mínimo: {{this.valuemin}}€</h2>
+      <h2>Precio mínimo: {{ this.valuemin }}€</h2>
       <mat-slider
         thumbLabel
         [displayWith]="formatLabel"
@@ -27,7 +30,7 @@
       ></mat-slider>
     </div>
     <div class="func">
-      <h2>Precio máximo: {{this.valuemax}}€</h2>
+      <h2>Precio máximo: {{ this.valuemax }}€</h2>
       <mat-slider
         thumbLabel
         [displayWith]="formatLabel"
@@ -44,16 +47,45 @@
       <h2>Provincia:</h2>
       <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Provincia</mat-label>
-        <input matInput
-               aria-label="Provincia"
-               [matAutocomplete]="auto"
-               [formControl]="provControl">
+        <input
+          matInput
+          aria-label="Provincia"
+          [matAutocomplete]="auto"
+          [formControl]="provControl"
+          (ngModelChange)="getSelectedProv()"
+        />
         <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let prov of filteredProv | async" [value]="prov.Provincia">
-            <span>{{prov.Provincia}}</span> 
+          <mat-option
+            *ngFor="let prov of filteredProv | async"
+            [value]="formatString(prov.Provincia)"
+          >
+            <span>{{ formatString(prov.Provincia) }}</span>
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
+      <div
+        *ngIf="provControl.value != ''"
+      >
+      <h2>Municipio:</h2>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Municipio</mat-label>
+        <input
+          matInput
+          aria-label="Provincia"
+          [matAutocomplete]="auto"
+          [formControl]="munControl"
+          (ngModelChange)="getSelectedMun()"
+        />
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option
+            *ngFor="let mun of filteredMun | async"
+            [value]="formatString(mun.Municipio)"
+          >
+            <span>{{ formatString(mun.Municipio)}}</span>
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      </div>
     </div>
   </div>
 </div>
