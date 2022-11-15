@@ -42,7 +42,18 @@
     </div>
     <div class="func">
       <h2>Provincia:</h2>
-      
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <input matInput
+               aria-label="Provincia"
+               [matAutocomplete]="auto"
+               [formControl]="provControl">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let prov of filteredProv | async" [value]="prov.Provincia">
+            <span>{{prov.Provincia}}</span> 
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
     </div>
   </div>
 </div>

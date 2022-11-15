@@ -9,11 +9,11 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ViewComponent } from './components/view/view.component';
 import { MaterialImportsModule } from './modules/material-imports/material-imports.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, GasListComponent, SidebarComponent, ViewComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MaterialImportsModule, BrowserAnimationsModule, FormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MaterialImportsModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
