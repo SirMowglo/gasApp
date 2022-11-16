@@ -19,10 +19,10 @@ export class ViewComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addMunSelected(value:MunicipioResponse){
+  addMunSelected(value:MunicipioResponse | undefined){
     this.munSelected = value;
   }
-  addProvSelected(value:ProvinciasResponse){
+  addProvSelected(value:ProvinciasResponse | undefined){
     this.provSelected = value;
   }
   addComb(value:string){

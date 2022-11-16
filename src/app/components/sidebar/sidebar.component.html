@@ -53,6 +53,7 @@
           [matAutocomplete]="auto"
           [formControl]="provControl"
           (ngModelChange)="getSelectedProv()"
+          (ngModelChange)="addProvSelected(this.provSelected)"
         />
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option
@@ -75,6 +76,7 @@
           [matAutocomplete]="auto"
           [formControl]="munControl"
           (ngModelChange)="getSelectedMun()"
+          (ngModelChange)="addMunSelected(this.munSelected)"
         />
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option
@@ -85,6 +87,7 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
+      <button (click)="filterList()">Filtrar</button>
       </div>
     </div>
   </div>

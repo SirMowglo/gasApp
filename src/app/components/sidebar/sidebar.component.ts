@@ -5,6 +5,7 @@ import { Combustible } from 'src/app/interfaces/combustibles.interface';
 import { MunicipioResponse } from 'src/app/interfaces/municipios.interface';
 import { ProvinciasResponse } from 'src/app/interfaces/provincias.interface';
 import { GasService } from 'src/app/services/gas.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -38,13 +39,12 @@ export class SidebarComponent implements OnInit {
   ];
 
 
-  constructor(private gService: GasService) {
+  constructor(private gService: GasService, private sharedService: SharedDataService) {
     this.getProvincias();
     this.filteredProv = this.provControl.valueChanges.pipe(
       startWith(''),
       map((prov) => (prov ? this._filterProv(prov) : this.provincias.slice()))
     );
-
     this.filteredMun = this.munControl.valueChanges.pipe(
       startWith(''),
       map((mun) => (mun ? this._filterMun(mun) : this.municipios.slice()))
@@ -99,10 +99,10 @@ export class SidebarComponent implements OnInit {
     return value + '€';
   }
 
-  addProvSelected(prov : ProvinciasResponse){
+  addProvSelected(prov : ProvinciasResponse |undefined){
     this.emitProvSelected.emit(prov);
   }
-  addMunSelected(mun : MunicipioResponse){
+  addMunSelected(mun : MunicipioResponse|undefined){
     this.emitMunSelected.emit(mun);
   }
   addSelectedComb(comb: string) {
@@ -113,5 +113,9 @@ export class SidebarComponent implements OnInit {
   }
   addMaxValue(maxV: number) {
     this.emitMaxValue.emit(maxV);
+  }
+
+  filterList(){
+    this.sharedService.sendFilterEvent();
   }
 }

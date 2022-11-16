@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import {
   GasResponse,
   ListaEESSPrecio,
@@ -6,6 +7,7 @@ import {
 import { MunicipioResponse } from 'src/app/interfaces/municipios.interface';
 import { ProvinciasResponse } from 'src/app/interfaces/provincias.interface';
 import { GasService } from 'src/app/services/gas.service';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-gas-list',
@@ -23,14 +25,24 @@ export class GasListComponent implements OnInit {
   gasList: ListaEESSPrecio[] = [];
   filteredGasList: ListaEESSPrecio[] = [];
 
-  constructor(private gasService: GasService) {}
+  filterEventsubscription: Subscription;
+  constructor(
+    private gasService: GasService,
+    private sharedService: SharedDataService
+  ) {
+    this.filterEventsubscription = this.sharedService
+      .getFilterEvent()
+      .subscribe(() => {
+        this.allFilters();
+      });
+  }
 
   ngOnInit(): void {
     this.getGasList();
   }
 
   ngOnChanges() {
-    this.filterListByPrice(this.selectedComb);
+    this.allFilters();
   }
 
   getGasList() {
@@ -42,6 +54,16 @@ export class GasListComponent implements OnInit {
   formatString(str: string) {
     let readable = str.charAt(0) + str.substring(1).toLowerCase();
     return readable;
+  }
+
+  allFilters() {
+    this.filterListByPrice(this.selectedComb);
+    if (this.provSelected != undefined) {
+      this.filterListByProv();
+    }
+    if (this.munSelected != undefined) {
+      this.filterListByMun();
+    }
   }
 
   filterListByPrice(comb: string) {
@@ -70,5 +92,16 @@ export class GasListComponent implements OnInit {
             this.valuemax
       );
     }
+  }
+
+  filterListByProv() {
+    this.filteredGasList = this.filteredGasList.filter(
+      (gas) => gas['IDProvincia'] === this.provSelected?.IDPovincia
+    );
+  }
+  filterListByMun() {
+    this.filteredGasList = this.filteredGasList.filter(
+      (gas) => gas['IDMunicipio'] === this.munSelected?.IDMunicipio
+    );
   }
 }
