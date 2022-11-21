@@ -10,10 +10,11 @@ import { ViewComponent } from './components/view/view.component';
 import { MaterialImportsModule } from './modules/material-imports/material-imports.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [AppComponent, GasListComponent, SidebarComponent, ViewComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MaterialImportsModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MaterialImportsModule, BrowserAnimationsModule, FormsModule, ReactiveFormsModule, GoogleMapsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
