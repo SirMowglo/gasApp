@@ -14,11 +14,20 @@
     [provSelected]="provSelected"
     (emitFilteredGL)="addFilteredGL($event)"
   ></app-gas-list>
-  <google-map height="800px" [center]="center" [zoom]="zoom">
-    <map-marker *ngFor="let marker of markers"
-    [position]="marker.position"
-    [label]="marker.label"
-    [title]="marker.title"
-    [options]="marker.options"> </map-marker>
-  </google-map>
+
+  <div class="gmaps">
+    <google-map height="100%" width="100%" [center]="center" [zoom]="zoom">
+      <map-marker
+        #markerElem="mapMarker"
+        *ngFor="let marker of markers"
+        [position]="marker.position"
+        [label]="marker.label"
+        [title]="marker.title"
+        [options]="marker.options"
+        (mapClick)="openInfoWindow(markerElem, marker.info)"
+      >
+      </map-marker>
+      <map-info-window [innerHTML]="infoContent">{{this.infoContent}}</map-info-window>
+    </google-map>
+  </div>
 </div>

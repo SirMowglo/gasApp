@@ -12,12 +12,16 @@ app-gas-list{
     grid-column: 2;
     grid-row: 0;
     margin-left: 350px;
+    margin-right: 500px;
     width: 100%;
     height: 100%;
 }
-google-maps{
+.gmaps{
     grid-column: 3;
     grid-row: 0;
-    position:sticky;
+    position: fixed;
     top: 0;
+    right: 0;
+    height: 100%;
+    width: 500px;
 }
