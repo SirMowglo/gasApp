@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {
   GasResponse,
@@ -22,6 +22,8 @@ export class GasListComponent implements OnInit {
   @Input() provSelected: ProvinciasResponse | undefined;
   @Input() munSelected: MunicipioResponse | undefined;
 
+  @Output() emitFilteredGL = new EventEmitter<ListaEESSPrecio[]>();
+
   gasList: ListaEESSPrecio[] = [];
   filteredGasList: ListaEESSPrecio[] = [];
 
@@ -43,6 +45,7 @@ export class GasListComponent implements OnInit {
 
   ngOnChanges() {
     this.allFilters();
+    this.addFilteredGL(this.filteredGasList);
   }
 
   getGasList() {
@@ -103,5 +106,9 @@ export class GasListComponent implements OnInit {
     this.filteredGasList = this.filteredGasList.filter(
       (gas) => gas['IDMunicipio'] === this.munSelected?.IDMunicipio
     );
+  }
+
+  addFilteredGL(filteredGasList : ListaEESSPrecio[]){
+    this.emitFilteredGL.emit(filteredGasList);
   }
 }

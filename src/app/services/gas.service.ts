@@ -12,7 +12,7 @@ export class GasService {
   constructor(private http:HttpClient) { }
 
   getGasStations():Observable <GasResponse>{
-    return this.http.get<GasResponse>(`https://raw.githubusercontent.com/SirMowglo/gasApp/main/gasResponseFull.json`);
+    return this.http.get<GasResponse>(`https://raw.githubusercontent.com/SirMowglo/gasApp/main/gasResponse.json`);
     // return this.http.get<GasResponse>(`https://sedeaplicaciones.minetur.gob.es/ServiciosRESTCarburantes/PreciosCarburantes/EstacionesTerrestres/`)
   }
   getProvincias():Observable<ProvinciasResponse[]>{
